@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Coffee Bliss Café</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f8f5f2;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: #3e2723;
+            color: white;
+        }
+
+        nav h1 {
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        nav ul li:hover {
+            color: #ffcc80;
+        }
+
+        /* HERO */
+        .hero {
+            height: 90vh;
+            background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+        }
+
+        /* MENU */
+        .menu {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .menu h2 {
+            margin-bottom: 20px;
+        }
+
+        .menu-items {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 50px;
+            background: #efebe9;
+            text-align: center;
+        }
+
+        /* GALLERY */
+        .gallery {
+            padding: 50px;
+        }
+
+        .gallery-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #3e2723;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h1>Coffee Bliss</h1>
+        <ul>
+            <li>Home</li>
+            <li>Menu</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1>Fresh Coffee, Cozy Vibes ☕</h1>
+    </div>
+
+    <section class="menu">
+        <h2>Our Menu</h2>
+        <div class="menu-items">
+            <div class="item">Espresso - ₹120</div>
+            <div class="item">Cappuccino - ₹150</div>
+            <div class="item">Latte - ₹160</div>
+            <div class="item">Brownie - ₹100</div>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>About Us</h2>
+        <p>We serve freshly brewed coffee with love and warmth. A perfect place to relax and enjoy your day.</p>
+    </section>
+
+    <section class="gallery">
+        <h2 style="text-align:center;">Gallery</h2>
+        <div class="gallery-images">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
+            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348">
+        </div>
+    </section>
+
+    <footer>
+        <p>📍 Malagudem | ☎ 9876543210</p>
+    </footer>
+
+</body>
+</html>
