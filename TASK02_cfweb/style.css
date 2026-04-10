@@ -1,0 +1,207 @@
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f5f2;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* =====================
+   Navbar
+===================== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: #3e2723;
+    color: white;
+    position: sticky; /* sticky navbar */
+    top: 0;
+    z-index: 1000;
+}
+
+nav h1 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 25px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+nav ul li:hover {
+    color: #ffcc80;
+    transform: scale(1.1);
+}
+
+/* =====================
+   Hero Section
+===================== */
+.hero {
+    height: 90vh;
+    background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 50px;
+    background: rgba(0,0,0,0.5);
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.hero h1:hover {
+    transform: scale(1.05);
+}
+
+/* =====================
+   Menu Section
+===================== */
+.menu {
+    padding: 50px;
+    text-align: center;
+}
+
+.menu h2 {
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: #3e2723;
+}
+
+.menu-items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.item {
+    background: #fff;
+    padding: 20px;
+    margin: 15px;
+    width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+/* =====================
+   About Section
+===================== */
+.about {
+    padding: 50px;
+    background: #efebe9;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+/* =====================
+   Gallery Section
+===================== */
+.gallery {
+    padding: 50px;
+}
+
+.gallery h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 32px;
+    color: #3e2723;
+}
+
+.gallery-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* =====================
+   Footer
+===================== */
+footer {
+    background: #3e2723;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-weight: 500;
+}
+
+/* =====================
+   Responsive Design
+===================== */
+@media (max-width: 1024px) {
+    .menu-items {
+        justify-content: center;
+    }
+
+    .gallery-images {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        padding: 15px 20px;
+    }
+
+    .menu-items {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery-images {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 28px;
+        padding: 10px 15px;
+    }
+}
