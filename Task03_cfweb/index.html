@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew Haven Cafe - Interactive JavaScript Features</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>☕ Brew Haven Cafe</h1>
+        <p>Your favorite destination for coffee and pastries</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <button onclick="showWelcome()">Home</button>
+        <button onclick="updateCafeStatus()">Cafe Status</button>
+        <button onclick="openMenu()">Menu</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- 1. VARIABLES SECTION -->
+        <section id="variables-section" class="section">
+            <h2>1️⃣ Cafe Info</h2>
+            <div class="content-box">
+                <h3>Cafe Details (Using let & const)</h3>
+                <p><strong>Cafe Name:</strong> <span id="cafeName"></span></p>
+                <p><strong>Daily Orders:</strong> <span id="dailyOrders"></span></p>
+                <p><strong>Rating:</strong> <span id="rating"></span></p>
+                <p><strong>Opening Hours:</strong> <span id="hours"></span></p>
+                
+                <button onclick="incrementOrders()">Process Order (+1)</button>
+                <button onclick="updateRating()">Update Rating</button>
+                <button onclick="testConstReassignment()">Test Const Reassignment (Check Console)</button>
+                
+                <p class="info-text">📌 Check the console (F12) to see variable logs</p>
+            </div>
+        </section>
+
+        <!-- 2. FUNCTIONS SECTION -->
+        <section id="functions-section" class="section">
+            <h2>2️⃣ Menu & Pricing</h2>
+            <div class="content-box">
+                <h3>Calculate Menu Prices</h3>
+                
+                <label>Select Item:</label>
+                <select id="menuSelect">
+                    <option value="">-- Choose an item --</option>
+                    <option value="espresso">Espresso ($3.50)</option>
+                    <option value="latte">Latte ($4.50)</option>
+                    <option value="cappuccino">Cappuccino ($5.00)</option>
+                    <option value="pastry">Pastry ($3.00)</option>
+                </select>
+
+                <label>Quantity:</label>
+                <input type="number" id="quantity" value="1" min="1">
+
+                <button onclick="calculateTotal()">Calculate Total</button>
+                <button onclick="applyDiscount()">Apply 10% Discount</button>
+
+                <div id="priceResult" class="result-box"></div>
+                <p class="info-text">📌 Uses function declaration, arrow functions, and parameters</p>
+            </div>
+        </section>
+
+        <!-- 3. OBJECTS & METHODS SECTION -->
+        <section id="objects-section" class="section">
+            <h2>3️⃣Customer Profile</h2>
+            <div class="content-box">
+                <h3>Create Your Customer Profile</h3>
+                
+                <label>Customer Name:</label>
+                <input type="text" id="customerName" placeholder="Enter your name">
+
+                <label>Favorite Drink:</label>
+                <input type="text" id="favoriteDrink" placeholder="e.g., Cappuccino">
+
+                <label>Loyalty Points:</label>
+                <input type="number" id="loyaltyPoints" value="0" min="0">
+
+                <button onclick="createCustomer()">Create Profile</button>
+                <button onclick="addLoyaltyPoints()">Add 10 Points</button>
+                <button onclick="displayCustomerSummary()">Show Summary</button>
+
+                <div id="customerResult" class="result-box"></div>
+                <p class="info-text">📌 Objects store customer data with methods to update and display</p>
+            </div>
+        </section>
+
+        <!-- 4. POP-UP BOXES SECTION -->
+        <section id="popups-section" class="section">
+            <h2>4️⃣Cafe Promotions</h2>
+            <div class="content-box">
+                <h3>Interactive Pop-ups</h3>
+                
+                <button onclick="showAlertPromotion()" class="popup-btn">Alert - Special Offer</button>
+                <button onclick="showConfirmBooking()" class="popup-btn">Confirm - Book a Table</button>
+                <button onclick="showPromptFeedback()" class="popup-btn">Prompt - Share Feedback</button>
+
+                <div id="popupResult" class="result-box"></div>
+                <p class="info-text">📌 Uses alert(), confirm(), and prompt() to interact with users</p>
+            </div>
+        </section>
+
+        <!-- 5. EVENTS SECTION -->
+        <section id="events-section" class="section">
+            <h2>5️⃣Interactive Features</h2>
+            <div class="content-box">
+                <h3>Click, Hover & Input Events</h3>
+                
+                <!-- Click Event -->
+                <div class="event-item">
+                    <h4>Click Event Demo</h4>
+                    <button id="clickBtn" class="event-btn">Click Me to Order</button>
+                    <p id="clickResult" class="event-output"></p>
+                </div>
+
+                <!-- Hover Event -->
+                <div class="event-item">
+                    <h4>Hover Event Demo</h4>
+                    <div id="hoverBox" class="hover-box">
+                        Hover over me to reveal the special menu!
+                    </div>
+                    <p id="hoverResult" class="event-output"></p>
+                </div>
+
+                <!-- Input Event -->
+                <div class="event-item">
+                    <h4>Input Event Demo</h4>
+                    <input type="text" id="searchInput" placeholder="Search for items..." class="search-input">
+                    <p id="inputResult" class="event-output">Search results will appear here...</p>
+                </div>
+
+                <!-- Double-click Event -->
+                <div class="event-item">
+                    <h4>Double-click Event Demo</h4>
+                    <button id="dblClickBtn" class="event-btn">Double-click for Surprise!</button>
+                    <p id="dblClickResult" class="event-output"></p>
+                </div>
+
+                <p class="info-text">📌 Demonstrates click, hover (mouseover/mouseout), input, and dblclick events</p>
+            </div>
+        </section>
+
+        <!-- Welcome Message Section -->
+        <section id="welcome-section" class="section">
+            <div id="welcomeMessage" class="welcome-box"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Brew Haven Cafe. All rights reserved. | Built with JavaScript Fundamentals</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
