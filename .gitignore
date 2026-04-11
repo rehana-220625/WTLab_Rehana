@@ -1,0 +1,171 @@
+# Git Ignore Rules for task8_git Project
+
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.netbeans/
+*.iml
+.project
+.settings/
+.classpath
+
+# Node/npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PHP
+vendor/
+.env
+.env.local
+composer.lock
+
+# Build artifacts
+dist/
+build/
+*.o
+*.a
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+*.temp
+
+# Logs
+logs/
+*.log
+
+# Dependencies
+node_modules/
+bower_components/
+
+# Compiled code
+*.class
+*.jar
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration files (local)
+.env.local
+.env.*.local
+config.local.php
+
+# IDE specific
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/*
+*.iml
+
+# Backup files
+*.backup
+*.orig
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# OS generated files
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# Ignore all .env files
+.env*
+!.env.example
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore IDE config
+.idea/
+.vscode/
+*.code-workspace
+
+# Ignore OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore package manager locks (if using multiple)
+yarn.lock
+package-lock.json
+Gemfile.lock
+
+# Ignore local development overrides
+local.properties
+.project
+.classpath
+
+# Ignore test coverage and reports
+coverage/
+test-results/
+htmlcov/
+
+# Ignore archives
+*.zip
+*.tar.gz
+*.rar
+
+# Ignore vendor directories
+vendor/
+node_modules/
+
+# Ignore auto-generated files
+dist/
+build/
+*.min.js
+*.min.css
+
