@@ -6,6 +6,9 @@
 // 1. VARIABLES SECTION
 // ============================================
 
+// API Configuration - MongoDB Backend Connection
+const API_URL = 'http://localhost:5000/api';
+
 // Using const for values that won't change
 const CAFE_NAME = "Brew Haven Cafe";
 const OPENING_HOUR = "6:00 AM";
@@ -19,9 +22,51 @@ let isOpen = true;
 
 // Display initial variable values on page load
 window.addEventListener('DOMContentLoaded', function() {
-    displayVariables();
+    loadDataFromBackend();
     setupEventListeners();
 });
+
+// Fetch all data from backend
+async function loadDataFromBackend() {
+    await Promise.all([loadCafeInfo(), loadOrderCount(), loadRating()]);
+    displayVariables();
+}
+
+// Fetch cafe info from backend
+async function loadCafeInfo() {
+    try {
+        const response = await fetch(`${API_URL}/cafe-info`);
+        const data = await response.json();
+        isOpen = data.isOpen;
+        console.log('✓ Backend: Cafe info loaded');
+    } catch (error) {
+        console.log('⚠ Backend unavailable, using default cafe info');
+    }
+}
+
+// Fetch order count from backend
+async function loadOrderCount() {
+    try {
+        const response = await fetch(`${API_URL}/orders`);
+        const data = await response.json();
+        dailyOrders = data.totalOrders;
+        console.log('✓ Backend: Orders loaded from MongoDB');
+    } catch (error) {
+        console.log('⚠ Could not load orders from backend');
+    }
+}
+
+// Fetch rating from backend
+async function loadRating() {
+    try {
+        const response = await fetch(`${API_URL}/rating`);
+        const data = await response.json();
+        cafeRating = data.rating;
+        console.log('✓ Backend: Rating loaded from MongoDB');
+    } catch (error) {
+        console.log('⚠ Could not load rating from backend');
+    }
+}
 
 // Function to display variables on webpage
 function displayVariables() {
@@ -43,17 +88,54 @@ function displayVariables() {
 }
 
 // Function to increment orders (demonstrating let reassignment)
-function incrementOrders() {
-    dailyOrders++; // Reassigning let variable
-    displayVariables();
-    alert(`Order #${dailyOrders} processed! Thank you for your purchase!`);
+async function incrementOrders() {
+    try {
+        const response = await fetch(`${API_URL}/orders`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                item: 'Coffee',
+                quantity: 1,
+                price: 4.50
+            })
+        });
+        const data = await response.json();
+        if (data.success) {
+            dailyOrders++;
+            displayVariables();
+            console.log('✓ Order saved to MongoDB');
+            alert(data.message + ' Thank you for your purchase!');
+        }
+    } catch (error) {
+        console.error('⚠ Error creating order:', error);
+        dailyOrders++; // Fallback to local increment
+        displayVariables();
+        alert(`Order #${dailyOrders} processed! Thank you for your purchase!`);
+    }
 }
 
 // Function to update rating (demonstrating let reassignment)
-function updateRating() {
-    cafeRating = (Math.random() * 0.5 + 4.5).toFixed(1); // New rating between 4.5-5.0
-    displayVariables();
-    alert(`Rating updated to ${cafeRating} ⭐`);
+async function updateRating() {
+    try {
+        const newRating = (Math.random() * 0.5 + 4.5).toFixed(1); // New rating between 4.5-5.0
+        const response = await fetch(`${API_URL}/rating`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ rating: parseFloat(newRating) })
+        });
+        const data = await response.json();
+        if (data.success) {
+            cafeRating = data.rating;
+            displayVariables();
+            console.log('✓ Rating saved to MongoDB');
+            alert(`Rating updated to ${cafeRating} ⭐`);
+        }
+    } catch (error) {
+        console.error('⚠ Error updating rating:', error);
+        cafeRating = (Math.random() * 0.5 + 4.5).toFixed(1); // Fallback to local update
+        displayVariables();
+        alert(`Rating updated to ${cafeRating} ⭐`);
+    }
 }
 
 // Attempting to reassign const (Test Case - will cause error)
