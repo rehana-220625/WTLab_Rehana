@@ -1,7 +1,7 @@
 <?php
 /* ===============================================
-   MINI FILE MANAGER APPLICATION
-   Complete file handling functionality
+   MODERN CAFE WEBSITE
+   Customer Portal with Profiles, Orders & Reviews
    =============================================== */
 
 // Get the uploads directory path
@@ -179,7 +179,7 @@ function get_file_icon($filename) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Manager - Cafe Website</title>
+    <title>Brew Haven Cafe - Your Coffee Journey</title>
     <style>
         * {
             margin: 0;
@@ -189,50 +189,105 @@ function get_file_icon($filename) {
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d4c0 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6f4e37 0%, #8b6f47 100%);
             color: white;
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
+            border-bottom: 4px solid #d4a574;
         }
         
         header h1 {
-            font-size: 2.2em;
+            font-size: 2.8em;
             margin-bottom: 5px;
+            letter-spacing: 1px;
         }
         
-        header p {
-            opacity: 0.9;
+        header .tagline {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-style: italic;
+            color: #f5e6d3;
+        }40px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0d5c7;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
             font-size: 1em;
+            font-weight: 600;
+            color: #8b6f47;
+            cursor: pointer20px;
         }
         
-        .content {
+        label {
+            display: block;
+            color: #6f4e37;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5
+            color: #6f4e37;
+            background: #faf7f2;
+        }
+        
+        .nav-tab.active {
+            color: #6f4e37;
+            border-bottom-color: #d4a574;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section {
+            background: #faf7f2;
             padding: 30px;
-        }
-        
-        .upload-section {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            border: 2px dashed #667eea;
+            border-left: 5px solid #d4a574;
         }
         
-        .upload-section h2 {
+        .section h2 {
+            color: #6f4e37;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px
             color: #333;
             margin-bottom: 20px;
             font-size: 1.3em;
@@ -253,33 +308,36 @@ function get_file_icon($filename) {
             display: block;
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 2px dashed #d4a574;
+            border-radius: 8px;
             cursor: pointer;
             background: white;
+            transition: all 0.3s;
         }
         
         input[type="file"]:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+            border-color: #8b6f47;
+            background: #fffbf7;
         }
         
         button {
             padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8b6f47 0%, #6f4e37 100%);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.95em;
             transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 20px rgba(111, 78, 55, 0.3);
         }
         
         button:active {
@@ -287,60 +345,65 @@ function get_file_icon($filename) {
         }
         
         .message {
-            padding: 15px;
+            padding: 15px 20px;
             margin-bottom: 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 0.95em;
+            border-left: 4px solid;
         }
         
         .success-message {
             background: #d4edda;
             color: #155724;
-            border: 1px solid #c3e6cb;
+            border-left-color: #28a745;
         }
         
         .error-message {
             background: #f8d7da;
             color: #721c24;
-            border: 1px solid #f5c6cb;
+            border-left-color: #dc3545;
         }
         
         .files-section h2 {
-            color: #333;
+            color: #6f4e37;
             margin-bottom: 20px;
             font-size: 1.3em;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 3px solid #d4a574;
             padding-bottom: 10px;
         }
         
         .file-stats {
-            background: #e8f4f8;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
+            border: 2px solid #e0d5c7;
         }
         
         .stat {
-            padding: 10px;
-            background: white;
-            border-left: 4px solid #667eea;
-            border-radius: 3px;
+            padding: 15px;
+            background: linear-gradient(135deg, #faf7f2 0%, #f5e6d3 100%);
+            border-left: 4px solid #d4a574;
+            border-radius: 6px;
+            text-align: center;
         }
         
         .stat-label {
-            color: #666;
-            font-size: 0.9em;
-            font-weight: 500;
+            color: #8b6f47;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .stat-value {
-            color: #333;
-            font-size: 1.3em;
+            color: #6f4e37;
+            font-size: 1.8em;
             font-weight: 700;
-            margin-top: 5px;
+            margin-top: 8px;
         }
         
         .files-table {
@@ -350,11 +413,11 @@ function get_file_icon($filename) {
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         
         .files-table thead {
-            background: #667eea;
+            background: linear-gradient(135deg, #8b6f47 0%, #6f4e37 100%);
             color: white;
         }
         
@@ -362,15 +425,18 @@ function get_file_icon($filename) {
             padding: 15px;
             text-align: left;
             font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
         }
         
         .files-table td {
             padding: 12px 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e0d5c7;
         }
         
         .files-table tbody tr:hover {
-            background: #f8f9fa;
+            background: #faf7f2;
         }
         
         .file-icon {
@@ -379,18 +445,18 @@ function get_file_icon($filename) {
         }
         
         .file-name {
-            color: #333;
+            color: #6f4e37;
             font-weight: 500;
             word-break: break-all;
         }
         
         .file-size {
-            color: #666;
+            color: #8b6f47;
             font-size: 0.95em;
         }
         
         .file-date {
-            color: #999;
+            color: #b8a896;
             font-size: 0.9em;
             white-space: nowrap;
         }
@@ -398,56 +464,67 @@ function get_file_icon($filename) {
         .file-actions {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
         
         .btn-small {
-            padding: 8px 12px;
-            font-size: 0.85em;
-            border-radius: 4px;
+            padding: 8px 14px;
+            font-size: 0.8em;
+            border-radius: 6px;
             text-decoration: none;
             display: inline-block;
             transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
         
         .btn-download {
             background: #28a745;
             color: white;
-            border: none;
         }
         
         .btn-download:hover {
             background: #218838;
+            transform: translateY(-1px);
         }
         
         .btn-info {
-            background: #17a2b8;
+            background: #6f4e37;
             color: white;
-            border: none;
         }
         
         .btn-info:hover {
-            background: #138496;
+            background: #5a3f2f;
+            transform: translateY(-1px);
         }
         
         .btn-delete {
             background: #dc3545;
             color: white;
-            border: none;
         }
         
         .btn-delete:hover {
             background: #c82333;
+            transform: translateY(-1px);
         }
         
         .empty-state {
             text-align: center;
-            padding: 40px 20px;
-            color: #999;
+            padding: 60px 20px;
+            color: #b8a896;
         }
         
         .empty-state-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state p {
+            font-size: 1.1em;
+            color: #8b6f47;
         }
         
         .modal {
@@ -465,24 +542,36 @@ function get_file_icon($filename) {
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
         
         .modal-content {
             background: white;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 12px;
             max-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
             width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid #d4a574;
         }
         
         .modal-header {
             font-size: 1.5em;
             font-weight: 700;
-            color: #333;
+            color: #6f4e37;
             margin-bottom: 20px;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #d4a574;
             padding-bottom: 10px;
         }
         
@@ -491,255 +580,361 @@ function get_file_icon($filename) {
         }
         
         .modal-info-label {
-            color: #666;
+            color: #8b6f47;
             font-weight: 600;
             margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
         }
         
         .modal-info-value {
-            color: #333;
-            background: #f5f5f5;
+            color: #6f4e37;
+            background: #faf7f2;
             padding: 10px;
-            border-radius: 4px;
+            border-radius: 6px;
             word-break: break-all;
+            border-left: 3px solid #d4a574;
         }
         
         .modal-close {
             margin-top: 20px;
             width: 100%;
-            background: #667eea;
+            background: linear-gradient(135deg, #8b6f47 0%, #6f4e37 100%);
         }
         
         .close-button {
             float: right;
             font-size: 1.5em;
-            color: #666;
+            color: #8b6f47;
             cursor: pointer;
             background: none;
             border: none;
             padding: 0;
             width: auto;
+            font-weight: bold;
         }
         
         .close-button:hover {
-            color: #333;
+            color: #6f4e37;
         }
         
         .file-info-link {
-            color: #667eea;
+            color: #d4a574;
             cursor: pointer;
             text-decoration: underline;
+            font-weight: 600;
         }
         
         .file-info-link:hover {
-            color: #764ba2;
+            color: #8b6f47;
         }
         
-        .nav-links {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
+        .footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0d5c7;
             text-align: center;
+            color: #8b6f47;
+            font-size: 0.9em;
         }
         
-        .nav-links a {
-            display: inline-block;
-            margin: 0 15px;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background 0.3s;
+        .feature-intro {
+            background: linear-gradient(135deg, #fff9f0 0%, #faf7f2 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #d4a574;
+            margin-bottom: 25px;
+            color: #6f4e37;
         }
         
-        .nav-links a:hover {
-            background: #764ba2;
+        .up-icon {
+            font-size: 1.2em;
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>☕ File Manager</h1>
-            <p>Upload, manage, and download your files</p>
+            <h1>☕ Brew Haven Cafe</h1>
+            <p class="tagline">Experience the Perfect Cup</p>
         </header>
         
         <div class="content">
             <?php
             // Display messages
             if (!empty($success_message)) {
-                echo "<div class='message success-message'>" . htmlspecialchars($success_message) . "</div>";
+                echo "<div class='message success-message'>✓ " . htmlspecialchars($success_message) . "</div>";
             }
             if (!empty($error_message)) {
-                echo "<div class='message error-message'>" . htmlspecialchars($error_message) . "</div>";
+                echo "<div class='message error-message'>✗ " . htmlspecialchars($error_message) . "</div>";
             }
             ?>
             
-            <!-- Upload Section -->
-            <div class="upload-section">
-                <h2>📤 Upload a File</h2>
-                <form method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="file">Select File (Max 10MB)</label>
-                        <input type="file" id="file" name="file" required>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchTab('profile', this)">👤 My Profile</button>
+                <button class="nav-tab" onclick="switchTab('orders', this)">📜 My Orders</button>
+                <button class="nav-tab" onclick="switchTab('reviews', this)">⭐ Reviews</button>
+                <button class="nav-tab" onclick="switchTab('feedback', this)">💬 Suggestions</button>
+            </div>
+            
+            <!-- MY PROFILE TAB -->
+            <div id="profile" class="tab-content active">
+                <div class="section">
+                    <h2><span class="up-icon">👤</span>My Profile Picture</h2>
+                    <div class="feature-intro">
+                        Upload a profile picture to personalize your account. Your photo helps our baristas remember you and creates a friendly community atmosphere.
                     </div>
-                    <button type="submit">Upload File</button>
-                </form>
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="file">Choose Your Photo</label>
+                            <input type="file" id="file" name="file" accept="image/*" required>
+                            <small style="display: block; margin-top: 8px; color: #8b6f47;">Supported: JPG, PNG, GIF (Max 10MB)</small>
+                        </div>
+                        <button type="submit">Upload Profile Picture</button>
+                    </form>
+                </div>
+                
+                <div class="section">
+                    <h2>My Photos</h2>
+                    <?php
+                    // Get only image files for profile
+                    $profile_files = array_filter($files, function($f) {
+                        $ext = strtolower(pathinfo($f['name'], PATHINFO_EXTENSION));
+                        return in_array($ext, ['jpg', 'jpeg', 'png', 'gif']);
+                    });
+                    
+                    if (count($profile_files) > 0) {
+                        echo "<p style='color: #8b6f47; margin-bottom: 20px;'>You have " . count($profile_files) . " profile photo(s)</p>";
+                        echo "<div style='display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;'>";
+                        
+                        foreach ($profile_files as $file) {
+                            echo "<div style='background: white; padding: 15px; border-radius: 8px; border: 2px solid #e0d5c7;'>";
+                            echo "<div style='background: #faf7f2; width: 100%; height: 180px; border-radius: 6px; overflow: hidden; margin-bottom: 10px;'>";
+                            echo "<img src='uploads/" . urlencode($file['name']) . "' style='width: 100%; height: 100%; object-fit: cover; border-radius: 6px;'>";
+                            echo "</div>";
+                            echo "<p style='color: #6f4e37; font-weight: 600; margin-bottom: 10px; word-break: break-all;'>" . htmlspecialchars($file['name']) . "</p>";
+                            echo "<div class='file-actions'>";
+                            echo "<a href='download.php?file=" . urlencode($file['name']) . "' class='btn-small btn-download'>Download</a>";
+                            echo "<a href='" . $_SERVER['PHP_SELF'] . "?delete=" . urlencode($file['name']) . "' class='btn-small btn-delete' onclick='return confirm(\"Remove this photo?\")'>Remove</a>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        
+                        echo "</div>";
+                    } else {
+                        echo "<div class='empty-state'>";
+                        echo "<div class='empty-state-icon'>📷</div>";
+                        echo "<p>No profile photos yet. Upload your first photo above!</p>";
+                        echo "</div>";
+                    }
+                    ?>
+                </div>
             </div>
             
-            <!-- Files Section -->
-            <div class="files-section">
-                <h2>📁 Your Files</h2>
+            <!-- MY ORDERS TAB -->
+            <div id="orders" class="tab-content">
+                <div class="section">
+                    <h2><span class="up-icon">📜</span>Upload Order Receipt</h2>
+                    <div class="feature-intro">
+                        Save your order receipts and invoices. This helps you keep track of your favorite purchases and builds your coffee journey with us.
+                    </div>
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="file">Upload Receipt or Invoice</label>
+                            <input type="file" id="file" name="file" accept=".pdf,.jpg,.jpeg,.png" required>
+                            <small style="display: block; margin-top: 8px; color: #8b6f47;">Supported: PDF, JPG, PNG (Max 10MB)</small>
+                        </div>
+                        <button type="submit">Save Order</button>
+                    </form>
+                </div>
                 
-                <?php
-                // Display file statistics
-                if (count($files) > 0) {
-                    $total_size = 0;
-                    foreach ($files as $file) {
-                        $total_size += $file['size'];
+                <div class="section">
+                    <h2>My Order History</h2>
+                    <?php
+                    // Get order files (PDFs and images)
+                    $order_files = array_filter($files, function($f) {
+                        $ext = strtolower(pathinfo($f['name'], PATHINFO_EXTENSION));
+                        return in_array($ext, ['pdf', 'jpg', 'jpeg', 'png', 'doc', 'docx']);
+                    });
+                    
+                    if (count($order_files) > 0) {
+                        echo "<p style='color: #8b6f47; margin-bottom: 15px;'>📋 You have saved " . count($order_files) . " order(s)</p>";
+                        echo "<table class='files-table'>";
+                        echo "<thead><tr><th>Receipt</th><th>Date Saved</th><th>Size</th><th>Actions</th></tr></thead>";
+                        echo "<tbody>";
+                        
+                        foreach ($order_files as $file) {
+                            echo "<tr>";
+                            echo "<td><span class='file-icon'>" . get_file_icon($file['name']) . "</span><span class='file-name'>" . htmlspecialchars(substr($file['name'], 0, 30)) . (strlen($file['name']) > 30 ? '...' : '') . "</span></td>";
+                            echo "<td><span class='file-date'>" . date('M d, Y', $file['modified']) . "</span></td>";
+                            echo "<td><span class='file-size'>" . format_filesize($file['size']) . "</span></td>";
+                            echo "<td class='file-actions'>";
+                            echo "<a href='download.php?file=" . urlencode($file['name']) . "' class='btn-small btn-download'>Download</a>";
+                            echo "<a href='" . $_SERVER['PHP_SELF'] . "?delete=" . urlencode($file['name']) . "' class='btn-small btn-delete' onclick='return confirm(\"Remove this order?\")'>Delete</a>";
+                            echo "</td></tr>";
+                        }
+                        
+                        echo "</tbody></table>";
+                    } else {
+                        echo "<div class='empty-state'>";
+                        echo "<div class='empty-state-icon'>📭</div>";
+                        echo "<p>No orders saved yet. Start saving your receipts above!</p>";
+                        echo "</div>";
                     }
-                    
-                    echo "<div class='file-stats'>";
-                    echo "<div class='stat'>";
-                    echo "<div class='stat-label'>Total Files</div>";
-                    echo "<div class='stat-value'>" . count($files) . "</div>";
-                    echo "</div>";
-                    
-                    echo "<div class='stat'>";
-                    echo "<div class='stat-label'>Total Size</div>";
-                    echo "<div class='stat-value'>" . format_filesize($total_size) . "</div>";
-                    echo "</div>";
-                    
-                    echo "<div class='stat'>";
-                    echo "<div class='stat-label'>Directory</div>";
-                    echo "<div class='stat-value'>uploads/</div>";
-                    echo "</div>";
-                    
-                    echo "</div>";
-                }
-                ?>
-                
-                <?php
-                if (count($files) > 0) {
-                    echo "<table class='files-table'>";
-                    echo "<thead>";
-                    echo "<tr>";
-                    echo "<th>File Name</th>";
-                    echo "<th>Size</th>";
-                    echo "<th>Modified</th>";
-                    echo "<th>Actions</th>";
-                    echo "</tr>";
-                    echo "</thead>";
-                    echo "<tbody>";
-                    
-                    foreach ($files as $file) {
-                        echo "<tr>";
-                        echo "<td><span class='file-icon'>" . get_file_icon($file['name']) . "</span><span class='file-name'>" . htmlspecialchars($file['name']) . "</span></td>";
-                        echo "<td><span class='file-size'>" . format_filesize($file['size']) . "</span></td>";
-                        echo "<td><span class='file-date'>" . format_date($file['modified']) . "</span></td>";
-                        echo "<td class='file-actions'>";
-                        echo "<a href='download.php?file=" . urlencode($file['name']) . "' class='btn-small btn-download'>⬇️ Download</a>";
-                        echo "<button class='btn-small btn-info' onclick='showFileInfo(\"" . htmlspecialchars(json_encode($file), ENT_QUOTES) . "\")'>ℹ️ Info</button>";
-                        echo "<a href='" . $_SERVER['PHP_SELF'] . "?delete=" . urlencode($file['name']) . "' class='btn-small btn-delete' onclick='return confirm(\"Delete this file?\")'>🗑️ Delete</a>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                    
-                    echo "</tbody>";
-                    echo "</table>";
-                } else {
-                    echo "<div class='empty-state'>";
-                    echo "<div class='empty-state-icon'>📭</div>";
-                    echo "<p>No files uploaded yet. Start by uploading a file above!</p>";
-                    echo "</div>";
-                }
-                ?>
+                    ?>
+                </div>
             </div>
             
-            <div class="nav-links">
-                <a href="file_functions_demo.php">📚 File Functions Demo</a>
-                <a href="../Task04_cfweb/index.html">← Back to Home</a>
+            <!-- REVIEWS TAB -->
+            <div id="reviews" class="tab-content">
+                <div class="section">
+                    <h2><span class="up-icon">⭐</span>Share Your Review</h2>
+                    <div class="feature-intro">
+                        Write a review and attach supporting documents, photos, or videos. Your feedback helps us improve and shows our appreciation to the community.
+                    </div>
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="file">Attach Review File</label>
+                            <input type="file" id="file" name="file" required>
+                            <small style="display: block; margin-top: 8px; color: #8b6f47;">You can attach: Photos, Text files, PDFs, Videos (Max 10MB)</small>
+                        </div>
+                        <button type="submit">Submit Review</button>
+                    </form>
+                </div>
+                
+                <div class="section">
+                    <h2>Customer Reviews & Feedback</h2>
+                    <?php
+                    // Get all files (for reviews)
+                    if (count($files) > 0) {
+                        $recent_files = array_slice($files, 0, 10); // Show 10 most recent
+                        echo "<p style='color: #8b6f47; margin-bottom: 15px;'>⭐ " . count($files) . " review(s) from our coffee community</p>";
+                        echo "<table class='files-table'>";
+                        echo "<thead><tr><th>Review</th><th>Submitted</th><th>Actions</th></tr></thead>";
+                        echo "<tbody>";
+                        
+                        foreach ($recent_files as $file) {
+                            echo "<tr>";
+                            echo "<td><span class='file-icon'>" . get_file_icon($file['name']) . "</span><span class='file-name'>" . htmlspecialchars(substr($file['name'], 0, 35)) . (strlen($file['name']) > 35 ? '...' : '') . "</span></td>";
+                            echo "<td><span class='file-date'>" . date('M d, Y', $file['modified']) . "</span></td>";
+                            echo "<td class='file-actions'>";
+                            echo "<a href='download.php?file=" . urlencode($file['name']) . "' class='btn-small btn-download'>View</a>";
+                            echo "</td></tr>";
+                        }
+                        
+                        echo "</tbody></table>";
+                    } else {
+                        echo "<div class='empty-state'>";
+                        echo "<div class='empty-state-icon'>⭐</div>";
+                        echo "<p>Be the first to share your coffee experience with us!</p>";
+                        echo "</div>";
+                    }
+                    ?>
+                </div>
+            </div>
+            
+            <!-- SUGGESTIONS TAB -->
+            <div id="feedback" class="tab-content">
+                <div class="section">
+                    <h2><span class="up-icon">💬</span>Send a Suggestion</h2>
+                    <div class="feature-intro">
+                        Have a great idea? Share your suggestions, menu ideas, or improvements. You can attach photos, sketches, or detailed notes.
+                    </div>
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="file">Attach Your Suggestion</label>
+                            <input type="file" id="file" name="file" required>
+                            <small style="display: block; margin-top: 8px; color: #8b6f47;">Share sketches, photos, or detailed documents (Max 10MB)</small>
+                        </div>
+                        <button type="submit">Submit Suggestion</button>
+                    </form>
+                </div>
+                
+                <div class="section">
+                    <h2>Community Suggestions</h2>
+                    <?php
+                    if (count($files) > 5) {
+                        echo "<p style='color: #8b6f47; margin-bottom: 15px;'>💡 " . count($files) . " total suggestions from our community</p>";
+                        echo "<p style='color: #b8a896; margin-bottom: 20px; font-style: italic;'>Here are the most recent community ideas:</p>";
+                        echo "<table class='files-table'>";
+                        echo "<thead><tr><th>Suggestion</th><th>Date</th><th>Action</th></tr></thead>";
+                        echo "<tbody>";
+                        
+                        $recent = array_slice($files, 0, 5);
+                        foreach ($recent as $file) {
+                            echo "<tr>";
+                            echo "<td><span class='file-icon'>" . get_file_icon($file['name']) . "</span><span class='file-name'>" . htmlspecialchars(substr($file['name'], 0, 35)) . (strlen($file['name']) > 35 ? '...' : '') . "</span></td>";
+                            echo "<td><span class='file-date'>" . date('M d, Y', $file['modified']) . "</span></td>";
+                            echo "<td class='file-actions'>";
+                            echo "<a href='download.php?file=" . urlencode($file['name']) . "' class='btn-small btn-download'>View</a>";
+                            echo "</td></tr>";
+                        }
+                        
+                        echo "</tbody></table>";
+                    } else {
+                        echo "<div class='empty-state'>";
+                        echo "<div class='empty-state-icon'>💡</div>";
+                        echo "<p>Share your ideas and help us grow! Submit your first suggestion above.</p>";
+                        echo "</div>";
+                    }
+                    ?>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>🏪 Brew Haven Cafe &bull; Where Every Cup Tells a Story</p>
+                <p style="margin-top: 10px; font-size: 0.85em;">Thank you for being part of our coffee community!</p>
             </div>
         </div>
     </div>
     
-    <!-- File Info Modal -->
-    <div id="fileModal" class="modal">
+    <!-- File Info Modal (Hidden - No longer needed for display) -->
+    <div id="fileModal" class="modal" style="display: none;">
         <div class="modal-content">
             <button class="close-button" onclick="closeFileInfo()">×</button>
-            <div class="modal-header" id="modalTitle">File Information</div>
-            
+            <div class="modal-header">File Details</div>
             <div class="modal-info">
                 <div class="modal-info-label">File Name</div>
                 <div class="modal-info-value" id="fileInfoName"></div>
             </div>
-            
             <div class="modal-info">
-                <div class="modal-info-label">File Size</div>
+                <div class="modal-info-label">Size</div>
                 <div class="modal-info-value" id="fileInfoSize"></div>
             </div>
-            
             <div class="modal-info">
-                <div class="modal-info-label">MIME Type</div>
-                <div class="modal-info-value" id="fileInfoMime"></div>
-            </div>
-            
-            <div class="modal-info">
-                <div class="modal-info-label">File Type</div>
-                <div class="modal-info-value" id="fileInfoType"></div>
-            </div>
-            
-            <div class="modal-info">
-                <div class="modal-info-label">Last Modified</div>
+                <div class="modal-info-label">Uploaded Date</div>
                 <div class="modal-info-value" id="fileInfoModified"></div>
             </div>
-            
-            <div class="modal-info">
-                <div class="modal-info-label">Created</div>
-                <div class="modal-info-value" id="fileInfoCreated"></div>
-            </div>
-            
-            <div class="modal-info">
-                <div class="modal-info-label">Last Accessed</div>
-                <div class="modal-info-value" id="fileInfoAccessed"></div>
-            </div>
-            
-            <div class="modal-info">
-                <div class="modal-info-label">Permissions</div>
-                <div class="modal-info-value" id="fileInfoPerms"></div>
-            </div>
-            
-            <div class="modal-info">
-                <div class="modal-info-label">Is Readable</div>
-                <div class="modal-info-value" id="fileInfoReadable"></div>
-            </div>
-            
-            <div class="modal-info">
-                <div class="modal-info-label">Is Writable</div>
-                <div class="modal-info-value" id="fileInfoWritable"></div>
-            </div>
-            
             <button class="modal-close" onclick="closeFileInfo()">Close</button>
         </div>
     </div>
     
     <script>
+        function switchTab(tabName, btn) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Update button styles
+            const buttons = document.querySelectorAll('.nav-tab');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        
         function showFileInfo(fileData) {
             const file = JSON.parse(fileData);
-            
             document.getElementById('fileInfoName').textContent = file.name;
-            document.getElementById('fileInfoSize').textContent = file.size + ' bytes (' + formatSize(file.size) + ')';
-            document.getElementById('fileInfoMime').textContent = getMimeType(file.name);
-            document.getElementById('fileInfoType').textContent = file.type;
+            document.getElementById('fileInfoSize').textContent = formatSize(file.size);
             document.getElementById('fileInfoModified').textContent = new Date(file.modified * 1000).toLocaleString();
-            document.getElementById('fileInfoCreated').textContent = new Date(file.created * 1000).toLocaleString();
-            document.getElementById('fileInfoAccessed').textContent = new Date(file.accessed * 1000).toLocaleString();
-            document.getElementById('fileInfoPerms').textContent = ('0000' + file.permissions.toString(8)).slice(-4);
-            document.getElementById('fileInfoReadable').textContent = file.is_readable ? '✅ Yes' : '❌ No';
-            document.getElementById('fileInfoWritable').textContent = file.is_writable ? '✅ Yes' : '❌ No';
-            
             document.getElementById('fileModal').classList.add('show');
         }
         
@@ -751,37 +946,14 @@ function get_file_icon($filename) {
             const units = ['B', 'KB', 'MB', 'GB'];
             let size = bytes;
             let unitIndex = 0;
-            
             while (size >= 1024 && unitIndex < units.length - 1) {
                 size /= 1024;
                 unitIndex++;
             }
-            
             return size.toFixed(2) + ' ' + units[unitIndex];
         }
         
-        function getMimeType(filename) {
-            const ext = filename.split('.').pop().toLowerCase();
-            const mimeTypes = {
-                'pdf': 'application/pdf',
-                'jpg': 'image/jpeg',
-                'jpeg': 'image/jpeg',
-                'png': 'image/png',
-                'gif': 'image/gif',
-                'txt': 'text/plain',
-                'doc': 'application/msword',
-                'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                'xls': 'application/vnd.ms-excel',
-                'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'zip': 'application/zip',
-                'mp4': 'video/mp4',
-                'mp3': 'audio/mpeg'
-            };
-            
-            return mimeTypes[ext] || 'application/octet-stream';
-        }
-        
-        // Close modal when clicking outside
+        // Close modal on outside click
         window.onclick = function(event) {
             const modal = document.getElementById('fileModal');
             if (event.target === modal) {
