@@ -1,0 +1,34 @@
+# Environment variables - NEVER commit real secrets!
+.env
+.env.local
+.env.*.local
+
+# Session and cache
+sessions/
+cache/
+tmp/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Composer and package managers
+vendor/
+node_modules/
+package-lock.json
+composer.lock
+
+# Logs
+*.log
+logs/
+
+# Debug files
+debug/
